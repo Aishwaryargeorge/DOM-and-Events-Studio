@@ -8,8 +8,13 @@ function init () {
 	const Abortmission = document.getElementById("missionAbort");
 	const background = document.getElementById("shuttleBackground");
 	const rocketPos = document.getElementById("rocket");
-	const buttons = document.getElementsByTagName("button");
-	
+	const moveRight = document.getElementById("right");
+	const moveLeft = document.getElementById("left");
+	const moveUp = document.getElementById("up");
+	const moveDown = document.getElementById("down");
+	rocketPos.style.position= 'relative'; 
+    rocketPos.style.left = '0px'; 
+    rocketPos.style.bottom = '0px';
 
 	takingOff.addEventListener("click", function(event)
 	{
@@ -49,27 +54,30 @@ function init () {
 		}
 	});
 
-	buttons.addEventListener("click",function(event)
+	moveRight.addEventListener("click", function(event)
 	{
-		if(buttons === 'Up')
-		{
-			rocketPos.style.marginTop = "10px";
-			shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) + 10000;
-		}
-		else if (buttons ==="Down")
-		{
-			rocketPos.style.MarginBottom = "10px";
-			shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) - 10000;
-		}	
-		else if(buttons ==="Right")
-		{
-			rocketPos.style.marginRight = "-10px";
-		}
-		else if(buttons ==="Left")
-		{
-			rocketPos.style.marginLeft = "-10px";
-		}
+		movement = parseInt(rocketPos.style.left) + 10 + 'px';
+        rocketPos.style.left = movement;
 	});
-
+	
+	moveUp.addEventListener("click", function(event)
+	{
+		movement = parseInt(rocketPos.style.down) + 10 + 'px';
+        rocketPos.style.down = movement;
+		shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) + 10000;
+	});
+	
+	moveLeft.addEventListener("click", function(event)
+	{
+		movement = parseInt(rocketPos.style.left) - 10 + 'px';
+        rocketPos.style.left = movement;
+	});
+	
+	moveDown.addEventListener("click", function(event)
+	{
+		movement = parseInt(rocketPos.style.down) - 10 + 'px';
+        rocketPos.style.down = movement;
+		shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) - 10000;
+	});
 }
 window.addEventListener("load", init);
